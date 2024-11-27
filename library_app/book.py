@@ -1,10 +1,20 @@
 from enum import Enum
-from typing import Dict, Union
+from typing import Dict, Union, Optional
 
 class BookStatus(Enum):
     """Статус книги."""
     AVAILABLE = "в наличии"
     ISSUED = "выдана"
+
+    @classmethod
+    def from_input(cls, input_str: str) -> Optional['BookStatus']:
+        input_str = input_str.lower()
+        if input_str in ("1", "в наличии"):
+            return cls.AVAILABLE
+        elif input_str in ("0", "выдана"):
+            return cls.ISSUED
+        else:
+            return None
 
 class Book:
     """

@@ -4,28 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be0c354f-041c-4987-a762-4175b5e91b64" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/LibraryApp.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library_app/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library_app/book.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library_app/library.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library_app/library.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library_app/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_book.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_library.py" afterDir="false" />
+    <list default="true" id="be0c354f-041c-4987-a762-4175b5e91b64" name="Changes" comment="Push commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library_app/book.py" beforeDir="false" afterPath="$PROJECT_DIR$/library_app/book.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library_app/library.py" beforeDir="false" afterPath="$PROJECT_DIR$/library_app/library.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_library.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_library.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager" show_ignored="true" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -36,9 +26,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;rinxt&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/rinxt/LibraryApp.git&quot;,
+    &quot;accountId&quot;: &quot;3793830d-784a-4c96-8d12-0bda5907f124&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2pOfy31EMMuErDfZMl5dlhgUAQh" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -54,6 +56,8 @@
     "Python tests.Python tests for test_book.TestBook.test_invalid_book_id.executor": "Run",
     "Python tests.Python tests for test_book.TestBook.test_invalid_book_year.executor": "Run",
     "Python tests.Python tests for test_library.TestLibrary.executor": "Run",
+    "Python tests.Python tests for test_library.TestLibrary.test_add_book_invalid_input.executor": "Run",
+    "Python tests.Python tests for test_library.TestLibrary.test_add_book_success.executor": "Run",
     "Python tests.Python tests for test_library.TestLibrary.test_change_book_status_book_not_found.executor": "Run",
     "Python tests.Python tests for test_library.TestLibrary.test_change_book_status_invalid_id_type.executor": "Run",
     "Python tests.Python tests for test_library.TestLibrary.test_change_book_status_success.executor": "Run",
@@ -76,7 +80,7 @@
       <recent name="E:\Training\LibraryApp\library_app" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for test_library.TestLibrary">
+  <component name="RunManager" selected="Python tests.Python tests for test_book.TestBook">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="LibraryApp" />
       <option name="ENV_FILES" value="" />
@@ -129,7 +133,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_library.TestLibrary.test_load_library_json_decode_error" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for test_library.TestLibrary.test_add_book_invalid_input" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="LibraryApp" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -140,11 +144,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_library.TestLibrary.test_load_library_json_decode_error&quot;" />
+      <option name="_new_target" value="&quot;test_library.TestLibrary.test_add_book_invalid_input&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_library.TestLibrary.test_load_library_success" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for test_library.TestLibrary.test_add_book_success" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="LibraryApp" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -155,17 +159,17 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_library.TestLibrary.test_load_library_success&quot;" />
+      <option name="_new_target" value="&quot;test_library.TestLibrary.test_add_book_success&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for test_library.TestLibrary" />
         <item itemvalue="Python tests.Python tests for test_book.TestBook" />
+        <item itemvalue="Python tests.Python tests for test_library.TestLibrary" />
+        <item itemvalue="Python tests.Python tests for test_library.TestLibrary.test_add_book_invalid_input" />
+        <item itemvalue="Python tests.Python tests for test_library.TestLibrary.test_add_book_success" />
         <item itemvalue="Python.main" />
-        <item itemvalue="Python tests.Python tests for test_library.TestLibrary.test_load_library_success" />
-        <item itemvalue="Python tests.Python tests for test_library.TestLibrary.test_load_library_json_decode_error" />
       </list>
     </recent_temporary>
   </component>
@@ -185,6 +189,39 @@
       <option name="presentableId" value="Default" />
       <updated>1732642293345</updated>
     </task>
+    <task id="LOCAL-00001" summary="Remote commit">
+      <option name="closed" value="true" />
+      <created>1732668919392</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1732668919392</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Push commit">
+      <option name="closed" value="true" />
+      <created>1732669131873</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1732669131873</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Remote commit" />
+    <MESSAGE value="Push commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Push commit" />
   </component>
 </project>

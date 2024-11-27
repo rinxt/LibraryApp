@@ -106,21 +106,28 @@ class TestLibrary(unittest.TestCase):
         self.library._save_library()
         mock_dump.assert_called_once()
 
-    @patch("builtins.input", side_effect=["Python Crash Course", "Eric Matthes", "2019"])
-    def test_add_book_success(self, mock_input):
+    @patch("builtins.input", side_effect=["New Book", "Eric Matthes", "2019"])
+    @patch.object(Library, '_save_library')
+    def test_add_book_success(self, mock_save, mock_input):
         """Тестирует успешное добавление книги."""
         self.library.add_book()
         self.assertIn(1, self.library.books)
-        self.assertEqual(self.library.books[1].title, "Python Crash Course")
+        self.assertEqual(self.library.books[1].title, "New Book")
         self.assertEqual(self.library.books[1].author, "Eric Matthes")
         self.assertEqual(self.library.books[1].year, 2019)
         self.assertEqual(self.library.books[1].status, BookStatus.AVAILABLE)
+        mock_save.assert_called_once()
 
-    @patch("builtins.input", side_effect=["", "", "invalid", "Book", "Author", "2023"])
+    @patch("builtins.input", side_effect=["", "", "", "", "", "invalid"])
     def test_add_book_invalid_input(self, mock_input):
-        """Тестирует добавление книги с некорректными данными."""
-        self.library.add_book()
-        self.assertEqual(len(self.library.books), 0)
+        """Тестирует, что книга не добавляется при любом некорректном вводе."""
+        initial_book_count = len(self.library.books)
+        with patch('sys.stdout', new_callable=StringIO) as mocked_stdout:
+            self.library.add_book()
+            output = mocked_stdout.getvalue()
+            self.assertIn("Ввод не может быть пустым.", output)
+            self.assertIn("Не удалось получить данные книги.", output)
+        self.assertEqual(len(self.library.books), initial_book_count)
 
     @patch("builtins.input", side_effect=["1"])
     def test_delete_book_success(self, mock_input):
@@ -195,7 +202,7 @@ class TestLibrary(unittest.TestCase):
         with patch("builtins.input", side_effect=["New Book", "New Author", "2023"]):
             self.library.add_book()
 
-        loaded_library = Library()  # load data from file
+        loaded_library = Library()
         self.assertEqual(len(loaded_library.books), 1)
         self.assertEqual(loaded_library.books[1].title, "New Book")
         self.assertEqual(loaded_library.books[1].author, "New Author")
