@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="be0c354f-041c-4987-a762-4175b5e91b64" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/LibraryApp.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library_app/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library_app/book.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library_app/library.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library_app/library.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/library_app/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_book.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_library.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2pOfy31EMMuErDfZMl5dlhgUAQh" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests for test_book.TestBook.executor": "Run",
+    "Python tests.Python tests for test_book.TestBook.test_book_creation.executor": "Run",
+    "Python tests.Python tests for test_book.TestBook.test_book_creation_with_status.executor": "Run",
+    "Python tests.Python tests for test_book.TestBook.test_create_book.executor": "Run",
+    "Python tests.Python tests for test_book.TestBook.test_invalid_book_id.executor": "Run",
+    "Python tests.Python tests for test_book.TestBook.test_invalid_book_year.executor": "Run",
+    "Python tests.Python tests for test_library.TestLibrary.executor": "Run",
+    "Python tests.Python tests for test_library.TestLibrary.test_change_book_status_book_not_found.executor": "Run",
+    "Python tests.Python tests for test_library.TestLibrary.test_change_book_status_invalid_id_type.executor": "Run",
+    "Python tests.Python tests for test_library.TestLibrary.test_change_book_status_success.executor": "Run",
+    "Python tests.Python tests for test_library.TestLibrary.test_delete_book_not_found.executor": "Run",
+    "Python tests.Python tests for test_library.TestLibrary.test_display_all_books_empty.executor": "Run",
+    "Python tests.Python tests for test_library.TestLibrary.test_display_all_books_non_empty.executor": "Run",
+    "Python tests.Python tests for test_library.TestLibrary.test_integration_add_and_load.executor": "Run",
+    "Python tests.Python tests for test_library.TestLibrary.test_integration_delete_and_load.executor": "Run",
+    "Python tests.Python tests for test_library.TestLibrary.test_load_library_json_decode_error.executor": "Run",
+    "Python tests.Python tests for test_library.TestLibrary.test_load_library_success.executor": "Run",
+    "Python tests.Python tests for test_library.TestLibrary.test_search_book.executor": "Run",
+    "Python.main (1).executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Training\LibraryApp\library_app" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python tests.Python tests for test_library.TestLibrary">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="LibraryApp" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/library_app" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/library_app/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_book.TestBook" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="LibraryApp" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_book.TestBook&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_library.TestLibrary" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="LibraryApp" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_library.TestLibrary&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_library.TestLibrary.test_load_library_json_decode_error" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="LibraryApp" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_library.TestLibrary.test_load_library_json_decode_error&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_library.TestLibrary.test_load_library_success" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="LibraryApp" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_library.TestLibrary.test_load_library_success&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Python tests for test_library.TestLibrary" />
+        <item itemvalue="Python tests.Python tests for test_book.TestBook" />
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python tests.Python tests for test_library.TestLibrary.test_load_library_success" />
+        <item itemvalue="Python tests.Python tests for test_library.TestLibrary.test_load_library_json_decode_error" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-98f27166c754-ba05f1cad1b1-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.21829.153" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="be0c354f-041c-4987-a762-4175b5e91b64" name="Changes" comment="" />
+      <created>1732642293345</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732642293345</updated>
+    </task>
+    <servers />
+  </component>
+</project>
