@@ -7,7 +7,7 @@
 ## Структура Проекта
 
 ```
-LibraryApp
+LibraryApp 
 │
 ├── library_app/ 
 │   ├── library.py       # Основной модуль с логикой библиотеки
