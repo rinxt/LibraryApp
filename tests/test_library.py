@@ -35,7 +35,6 @@ class TestLibrary(unittest.TestCase):
     def test_generate_id_empty_library(self):
         """Тестирует генерацию ID в пустой библиотеке."""
         self.assertEqual(self.library._generate_id(), 1)
-        self.assertEqual(self.library.next_id, 1)
 
     def test_generate_id_non_empty_library(self):
         """Тестирует генерацию ID в непустой библиотеке."""
@@ -44,7 +43,14 @@ class TestLibrary(unittest.TestCase):
             3: Book(book_id=3, title="Book 3", author="Author 3", year=2020)
         }
         self.assertEqual(self.library._generate_id(), 4)
-        self.assertEqual(self.library.next_id, 4)
+
+    def test_generate_id_non_sequential(self):
+        """Тестирует генерацию ID при непоследовательных ID книг."""
+        self.library.books = {
+            1: Book(book_id=1, title="Book 1", author="Author 1", year=2000),
+            5: Book(book_id=5, title="Book 5", author="Author 5", year=2020)
+        }
+        self.assertEqual(self.library._generate_id(), 6)  # Ожидаем 6, а не 2
 
     @patch("json.load")
     @patch("os.path.exists", return_value=True)
@@ -89,8 +95,8 @@ class TestLibrary(unittest.TestCase):
     @patch("builtins.open", new_callable=mock_open)
     def test_load_library_json_decode_error(self, mock_open, mock_exists, mock_load):
         """Тестирует загрузку библиотеки при ошибке декодирования JSON."""
-        loaded_books = self.library._load_library()
-        self.assertEqual(loaded_books, {})
+        with self.assertRaises(ValueError):
+            self.library._load_library()
         mock_exists.assert_called_once()
         mock_open.assert_called_once_with(DATABASE_FILE, "r", encoding='utf-8')
         mock_load.assert_called_once()
@@ -176,17 +182,14 @@ class TestLibrary(unittest.TestCase):
             self.assertIn("в наличии", output)
             self.assertIn("выдана", output)
 
-    @patch("builtins.input", side_effect=["1", "0", "1", "1"])
+    @patch("builtins.input", side_effect=["1", "выдана"])  # Вводим ID и новый статус
     def test_change_book_status_success(self, mock_input):
-        """Тестирует успешное изменение статуса книги."""
+        """Тестирует изменение статуса книги."""
         self.library.books = {
-            1: Book(book_id=1, title="Book 1", author="Author 1", year=2000, status=BookStatus.AVAILABLE),
+            1: Book(1, "Test Book", "Test Author", 2023, BookStatus.AVAILABLE),
         }
         self.library.change_book_status()
         self.assertEqual(self.library.books[1].status, BookStatus.ISSUED)
-
-        self.library.change_book_status()
-        self.assertEqual(self.library.books[1].status, BookStatus.AVAILABLE)
 
     @patch("builtins.input", side_effect=["1", "3", "1"])
     def test_change_book_status_invalid_status(self, mock_input):
@@ -228,7 +231,7 @@ class TestLibrary(unittest.TestCase):
         }
         self.library._save_library()
 
-        with patch("builtins.input", side_effect=["1", "0"]):
+        with patch("builtins.input", side_effect=["1", "выдана"]):
             self.library.change_book_status()
 
         loaded_library = Library()

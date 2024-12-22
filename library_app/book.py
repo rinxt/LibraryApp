@@ -8,13 +8,11 @@ class BookStatus(Enum):
 
     @classmethod
     def from_input(cls, input_str: str) -> Optional['BookStatus']:
-        input_str = input_str.lower()
-        if input_str in ("1", "в наличии"):
-            return cls.AVAILABLE
-        elif input_str in ("0", "выдана"):
-            return cls.ISSUED
-        else:
-            return None
+        input_str = input_str.lower().strip()
+        for status in cls:
+            if input_str == str(status.value).lower() or input_str == str(status.name).lower():
+                return status
+        return None
 
 class Book:
     """
@@ -44,11 +42,13 @@ class Book:
             TypeError: Если тип года издания книги не является целым числом.
             TypeError: Если тип названия или автора книги не является строкой.
         """
-        if not isinstance(book_id, int):
+        if type(book_id) is not int:
             raise TypeError("ID книги должен быть целым числом")
-        if not isinstance(year, int):
+        if type(year) is not int:
             raise TypeError("Год издания книги должен быть целым числом")
-        if not isinstance(title, str) or not isinstance(author, str):
+        if not title or not author:
+            raise ValueError("Название и автор книги не могут быть пустыми строками")
+        if type(title) is not str or type(author) is not str:
             raise TypeError("Название и автор книги должны быть строками")
 
         self.id: int = book_id
@@ -99,7 +99,7 @@ class Book:
             ValueError: Если значение статуса книги не является допустимым.
         """
         required_keys = {"id", "title", "author", "year", "status"}
-        if not required_keys.issubset(data):
+        if not all(key in data for key in required_keys):
             raise KeyError(f"В словаре отсутствуют необходимые ключи: {required_keys - set(data)}")
 
         try:

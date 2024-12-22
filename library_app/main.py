@@ -1,36 +1,30 @@
 from library_app.library import Library
 
-
 def main() -> None:
-    """
-    Главная функция приложения.
-    Запускает основной цикл программы и обрабатывает ввод пользователя.
-    """
-    library: Library = Library()
+    library = Library()
+    menu_options = [
+        ("1", library.add_book, "Добавить книгу"),
+        ("2", library.delete_book, "Удалить книгу"),
+        ("3", library.search_book, "Поиск книги"),
+        ("4", library.display_all_books, "Вывести все книги"),
+        ("5", library.change_book_status, "Изменить статус книги"),
+        ("6", exit, "Выход"),
+    ]
 
     while True:
         print("\nМеню:")
-        print("1. Добавить книгу")
-        print("2. Удалить книгу")
-        print("3. Поиск книги")
-        print("4. Вывести все книги")
-        print("5. Изменить статус книги")
-        print("6. Выход")
+        for key, action, description in menu_options:
+            print(f"{key}. {description}")
 
-        choice: str = input("Выберите пункт меню: ")
+        choice = input("Выберите пункт меню: ")
 
-        if choice == "1":
-            library.add_book()
-        elif choice == "2":
-            library.delete_book()
-        elif choice == "3":
-            library.search_book()
-        elif choice == "4":
-            library.display_all_books()
-        elif choice == "5":
-            library.change_book_status()
-        elif choice == "6":
-            break
+        for key, action, _ in menu_options:
+            if choice == key:
+                if action is exit:
+                    action()
+                else:
+                    action()
+                break
         else:
             print("Некорректный выбор.")
 

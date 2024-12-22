@@ -2,11 +2,13 @@ import json
 import os
 import datetime
 import re
-from typing import Dict, List, Union, Any, Optional
+from typing import Dict, List, Union, Any, Optional, Callable
 from library_app.book import Book, BookStatus
 
 DATABASE_FILE: str = "library.json"
-
+MIN_COLUMN_WIDTH = 10
+CURRENT_YEAR = datetime.datetime.now().year
+MAX_ATTEMPTS = 3
 
 class Library:
     """
@@ -22,6 +24,23 @@ class Library:
         """
         self.books: Dict[int, Book] = self._load_library()
 
+    def _get_valid_input(self, prompt: str, validation_regex: str, error_message: str,
+                         data_type: Callable = str, max_attempts: int = MAX_ATTEMPTS) -> Optional[Any]:
+        """Получает данные от пользователя и проверяет их."""
+        for attempt in range(1, max_attempts + 1):
+            user_input = input(prompt).strip()
+            if not user_input:
+                print("Ввод не может быть пустым.")
+            elif re.match(validation_regex, user_input):
+                try:
+                    return data_type(user_input)
+                except ValueError:
+                    print(f"Неверный формат данных. Ожидается {data_type.__name__}.")
+            else:
+                print(f"{error_message} Попытка {attempt} из {max_attempts}.")
+        print("Превышено количество попыток ввода.")
+        return None
+
     def _generate_id(self) -> int:
         """
         Генерирует уникальный ID для книги.
@@ -29,11 +48,7 @@ class Library:
         Returns:
             int: Уникальный идентификатор.
         """
-        if not self.books:
-            self.next_id = 1
-        else:
-            self.next_id = max(self.books.keys()) + 1
-        return self.next_id
+        return max(self.books.keys()) + 1 if self.books else 1
 
     def _load_library(self) -> Dict[int, Book]:
         """
@@ -49,8 +64,7 @@ class Library:
                     data: List[Dict[str, Any]] = json.load(f)
                     return {book_data["id"]: Book.from_dict(book_data) for book_data in data}
             except json.JSONDecodeError as e:
-                print("Ошибка при чтении файла JSON:", e)
-                return {}
+                raise ValueError(f"Ошибка декодирования JSON: {e}") from e
         else:
             print("Файл библиотеки не найден.")
             return {}
@@ -62,49 +76,6 @@ class Library:
         data: List[Dict[str, Any]] = [book.to_dict() for book in self.books.values()]
         with open(DATABASE_FILE, "w", encoding='utf-8') as f:
             json.dump(data, f, indent=4, ensure_ascii=False)
-
-    def _get_valid_input(self, prompt: str, validation_regex: str, error_message: str, max_attempts: int = 3) -> \
-    Optional[str]:
-        """Получает введенные пользователем данные и проверяет их на соответствие шаблону регулярного выражения."""
-        for attempt in range(max_attempts):
-            user_input = input(prompt).strip()
-            if not user_input:
-                print("Ввод не может быть пустым.")
-                continue
-            if re.match(validation_regex, user_input):
-                return user_input
-            else:
-                print(f"{error_message} Попытка {attempt + 1} из {max_attempts}.")
-        print("Превышено количество попыток ввода.")
-        return None
-
-    def _get_book_id(self) -> Optional[int]:
-        """Получает и проверяет идентификатор книги, введенный пользователем."""
-        book_id_str = self._get_valid_input(
-            "Введите ID книги: ",
-            r"^\d+$",
-            "ID книги должно быть целым числом.",
-        )
-        if book_id_str:
-            return int(book_id_str)
-        return None
-
-
-    def _get_new_book_status(self) -> Optional[BookStatus]:
-        """Получает и проверяет статус новой книги на основе введенных пользователем данных."""
-        validation_regex = r"^(?:0|1|в наличии|выдана)$"
-        error_message = "Некорректный статус. Используйте 1, 0 или 'в наличии', 'выдана'."
-        status_input = self._get_valid_input(
-            "Введите новый статус (1 - в наличии, 0 - выдана): ",
-            validation_regex,
-            error_message,
-        )
-
-        if status_input:
-            new_status = BookStatus.from_input(status_input)
-            if new_status:
-                return new_status
-        return None
 
     def _get_book_data(self) -> Optional[Dict[str, Union[str, int]]]:
         """Получает и проверяет название книги, автора и год, введенные пользователем."""
@@ -150,47 +121,45 @@ class Library:
         """
         Удаляет книгу из библиотеки по ID.
         """
-        book_id = self._get_book_id()
-
-        if book_id is None:
-            return
-
-        if book_id in self.books:
-            del self.books[book_id]
-            self._save_library()
-            print("Книга удалена!")
-        else:
-            print("Книга с таким ID не найдена.")
+        book_id = self._get_valid_input("Введите ID книги: ", r"^\d+$", "ID книги должно быть целым числом.", int)
+        if book_id is not None:
+            if book_id in self.books:
+                del self.books[book_id]
+                self._save_library()
+                print("Книга удалена!")
+            else:
+                print("Книга с таким ID не найдена.")
 
     def _get_search_choice(self) -> Optional[str]:
-        """Получает и проверяет выбор критериев поиска из введенных пользователем данных."""
+        """Получает выбор критериев поиска."""
+
+        search_options = {
+            "1": "Название",
+            "2": "Автор",
+            "3": "Год издания",
+            "4": "Все",
+        }
+
         print("Выберите критерий поиска:")
-        print("1. Название")
-        print("2. Автор")
-        print("3. Год издания")
-        print("4. Все")
-        return self._get_valid_input("Введите номер критерия поиска: ", r"^[1-4]$",
-                                     "Некорректный выбор. Введите число от 1 до 4.")
+        for key, value in search_options.items():
+            print(f"{key}. {value}")
+
+        choice = self._get_valid_input("Введите номер критерия поиска: ", r"^[1-4]$", "Некорректный выбор.")
+        return choice
 
     def _perform_search(self, choice: str) -> List[Book]:
         """Выполняет поиск книг на основе выбора пользователя."""
-        if choice == "1":
-            search_term = input("Введите название книги для поиска: ")
-            return [book for book in self.books.values() if search_term.lower() in book.title.lower()]
-        elif choice == "2":
-            search_term = input("Введите автора книги для поиска: ")
-            return [book for book in self.books.values() if search_term.lower() in book.author.lower()]
-        elif choice == "3":
-            search_term = input("Введите год издания книги для поиска: ")
-            return [book for book in self.books.values() if search_term in str(book.year)]
-        elif choice == "4":
-            search_term = input("Введите название, автора или год для поиска: ")
-            return [
-                book for book in self.books.values()
-                if search_term.lower() in book.title.lower()
-                   or search_term.lower() in book.author.lower()
-                   or search_term in str(book.year)
-            ]
+        search_options = {
+            "1": ("Название", lambda book, term: term.lower() in book.title.lower()),
+            "2": ("Автор", lambda book, term: term.lower() in book.author.lower()),
+            "3": ("Год издания", lambda book, term: term in str(book.year)),
+            "4": ("Название, Автор или Год", lambda book, term: term.lower() in book.title.lower() or term.lower() in book.author.lower() or term in str(book.year))
+        }
+
+        if choice in search_options:
+            criterion_name, search_function = search_options[choice] # Распаковываем кортеж
+            search_term = input(f"Введите {criterion_name} книги для поиска: ")
+            return [book for book in self.books.values() if search_function(book, search_term)]
         return []
 
     def search_book(self) -> None:
@@ -236,8 +205,7 @@ class Library:
             for i in range(len(sorted_table_data[0]))
         ]
 
-        min_column_width: int = 10
-        column_widths: List[int] = [max(width, min_column_width) for width in column_widths]
+        column_widths: List[int] = [max(width, MIN_COLUMN_WIDTH) for width in column_widths]
 
         headers: List[str] = ["ID", "Название", "Автор", "Год", "Статус"]
 
@@ -261,11 +229,9 @@ class Library:
             print(separator_line)
 
     def change_book_status(self) -> None:
-        """
-        Изменяет статус книги по ID.
-        """
-        book_id = self._get_book_id()
+        """Изменяет статус книги по ID."""
 
+        book_id = self._get_valid_input("Введите ID книги: ", r"^\d+$", "ID книги должно быть целым числом.", int)
         if book_id is None:
             return
 
@@ -277,23 +243,24 @@ class Library:
         print("Выбрана книга:")
         print(book)
 
-        new_status = None
-        attempts = 0
-        while new_status is None and attempts < 3:
-            new_status = self._get_new_book_status()
-            attempts += 1
-            if new_status is None and attempts < 3:
-                print("Пожалуйста, попробуйте снова.")
-            elif new_status is None:
-                print("Превышено количество попыток ввода статуса.")
+        new_status_input = self._get_valid_input(
+            "Введите новый статус (выдана, в наличии): ",  # Исправлено сообщение
+            r"^(?:0|1|в наличии|выдана)$",
+            "Некорректный статус. Используйте 'в наличии', 'выдана'."
+        )
 
-            if new_status == book.status:
-                print(f"Книга уже имеет статус '{new_status.value}'.")
-                return
-
-        if new_status is None:
+        if new_status_input is None:
             return
 
-        book.status = new_status
+        new_status = BookStatus.from_input(new_status_input)
+        if new_status is None:
+            print("Некорректный статус.")
+            return
+
+        if new_status == book.status:
+            print(f"Книга уже имеет статус '{new_status.value}'.")
+        else:
+            book.status = new_status
+            print(f"Статус книги с ID {book_id} успешно изменен на '{book.status.value}'.")
+
         self._save_library()
-        print(f"Статус книги с ID {book_id} успешно изменен на '{book.status.value}'.")
